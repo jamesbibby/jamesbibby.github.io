@@ -3,17 +3,17 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://bibs.codes/categories/</loc>
+    <loc>https://bibs.codes/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://bibs.codes/</loc>
+    <loc>https://bibs.codes/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://bibs.codes/tags/</loc>
+    <loc>https://bibs.codes/tags/</loc>
     <priority>0</priority>
   </url>
   
