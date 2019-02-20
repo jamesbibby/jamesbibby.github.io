@@ -315,7 +315,7 @@ if (!doNotTrack) {
 </div>
 Image by <a href="https://commons.wikimedia.org/wiki/User:Helix84">helix84</a> via <a href="https://en.wikipedia.org/wiki/HTTP_persistent_connection">Wikipedia</a></p>
 
-<p>This may not seem like a big deal, but when all of your requests are secure <em>(you are using HTTPS for all requsts right?)</em>  this means multiple round trips from the client to the server.  Depending on the distance from the user to your servers, this could add hundereds of milliseconds for each request.</p>
+<p>This may not seem like a big deal, but when all of your requests are secure <em>(you are using HTTPS for all requests right?)</em>  this means multiple round trips from the client to the server.  Depending on the distance from the user to your servers, this could add hundreds of milliseconds to each request.</p>
 
 <p><img src="tls-ssl-handshake.png" alt="TLS handshake" />
 <a href="https://www.cloudflare.com/learning/security/glossary/transport-layer-security-tls/">Image Source</a></p>
@@ -324,7 +324,7 @@ Image by <a href="https://commons.wikimedia.org/wiki/User:Helix84">helix84</a> v
 
 <p>So you <em>could</em> change your routing layer or write some logic into your reverse proxy layer.  Or you could do the rewriting at the edge with a CloudFlare worker.</p>
 
-<p>If you make all of your service requests to a fixed domain (e.g. api.site.com/service_name) the browser can use a single HTTP/2 persistent connection to the closest CloudFlare pop and your worker can rewrite the url (service0-name.site.com) and forward the request to your service. The benifit here is that browser can use a single HTTP/2 connection back to your server for multiple requests as well, or even<a href="https://www.cloudflare.com/en-ca/products/argo-smart-routing/"> Argo Routing</a> for a really optimized path)</p>
+<p>If you make all of your service requests to a fixed domain (e.g. api.site.com/service_name) the browser can use a single HTTP/2 persistent connection to the closest CloudFlare <abbr title="point of presence">PoP</abbr> and your worker can rewrite the url (service0-name.site.com) and forward the request to your service. The benefit here is that browsers can use a single HTTP/2 connection back to your server for multiple requests as well, or even<a href="https://www.cloudflare.com/en-ca/products/argo-smart-routing/"> Argo Routing</a> for a really optimized path)</p>
 
 <h2 id="what-is-a-cloudflare-worker-anyway">What is a Cloudflare Worker anyway?</h2>
 
@@ -352,7 +352,7 @@ Image by <a href="https://commons.wikimedia.org/wiki/User:Helix84">helix84</a> v
 
 <p>Let&rsquo;s say you have a single page application and you want to host it in an Amazon S3 bucket.   Combining a CDN with S3 hosting is great for both cost and performance.</p>
 
-<p>One of the gotchas is that you need to separate asset requests from page requests.  Any asset request needs to go back to your S3 bucket and be resolved, but any other URL needs to return the SPA (to support deep links, bookmarks, etc)  The client side router will take care of showing the right content, it just needs the code bundle for the SPA.</p>
+<p>One of the gotchas is that you need to separate asset requests from page requests.  Any asset request needs to go back to your S3 bucket and be resolved, but any other URL needs to return the SPA (to support deep links, bookmarks, etc).  The client side router will take care of showing the right content, it just needs the code bundle for the SPA.</p>
 
 <p>One hack I have seen is return the index.html for any 404, but this means that an incorrect image returns your index.html page, not great.</p>
 
@@ -428,7 +428,7 @@ Image by <a href="https://commons.wikimedia.org/wiki/User:Helix84">helix84</a> v
   <span class="nx">event</span><span class="p">.</span><span class="nx">respondWith</span><span class="p">(</span><span class="nx">handleRequest</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">request</span><span class="p">));</span>
 <span class="p">});</span>
 </code></pre></div>
-<p>Now can you register the worker above to match the path <code>https://api.bibs.codes/*</code> and start moving your front end code over to the new URL format.</p>
+<p>Now you can register the worker above to match the path <code>https://api.bibs.codes/*</code> and start moving your front end code over to the new URL format.</p>
 
 <p>You can find the source code (and a unit test) in the <a href="https://github.com/jamesbibby/cloudflare-api-gateway">GitHub repository</a>.</p>
 
@@ -616,7 +616,7 @@ Image by <a href="https://commons.wikimedia.org/wiki/User:Helix84">helix84</a> v
         
         <p class="credits theme-by text-muted">
           <a href="http://gohugo.io">Hugo v0.54.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
-          &nbsp;&bull;&nbsp;[<a href="https://github.com/jamesbibby/bibs.codes/commit/62790c6a4247b1f93d510980aca4d97516c53184">62790c6</a>]
+          &nbsp;&bull;&nbsp;[<a href="https://github.com/jamesbibby/bibs.codes/commit/55a20733587a044138c50c9df6402f5b08a5d2d8">55a2073</a>]
         </p>
       </div>
     </div>
