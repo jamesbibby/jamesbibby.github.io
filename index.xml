@@ -27,7 +27,8 @@
       <pubDate>Mon, 18 Feb 2019 00:00:00 +0000</pubDate>
       <author>bibby@bibs.codes (James Bibby)</author>
       <guid>https://bibs.codes/posts/cloudflare-worker-api-gateway/</guid>
-      <description>I read a lot of articles (waaay to many) about what to write for a first blog post, in the end I settled on what was on my mind right now. I have been working on some CloudFlare Workers for a number of different things: serving SPAs from S3, adding special headers to certain requests, geo-redirection&amp;hellip; and a question came up about our URL structure at work. We have a microservice architecture with domain based routing.</description>
+      <description>I have been working on some CloudFlare Workers for a number of different things: serving SPAs from S3, adding special headers to certain requests, geo-redirection&amp;hellip; and a question came up about our URL structure at work. We have a microservice architecture with domain based routing. service-a.site.com, service-b.site.com, etc.
+This is a pretty standard routing when using platforms like Kubernetes, Mesosphere, Swarm, etc, but it gets in the way of the performance enhancements offered by HTTP/2 persistent connections in modern browsers.</description>
     </item>
     
     <item>
