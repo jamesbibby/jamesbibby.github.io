@@ -11,5 +11,23 @@
 	<atom:link href="https://bibs.codes/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
+    <item>
+      <title>Cloudflare</title>
+      <link>https://bibs.codes/categories/cloudflare/</link>
+      <pubDate>Mon, 18 Feb 2019 00:00:00 +0000</pubDate>
+      <author>bibby@bibs.codes (James Bibby)</author>
+      <guid>https://bibs.codes/categories/cloudflare/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Serverless</title>
+      <link>https://bibs.codes/categories/serverless/</link>
+      <pubDate>Mon, 18 Feb 2019 00:00:00 +0000</pubDate>
+      <author>bibby@bibs.codes (James Bibby)</author>
+      <guid>https://bibs.codes/categories/serverless/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

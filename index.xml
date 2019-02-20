@@ -22,6 +22,15 @@
     </item>
     
     <item>
+      <title>API Gateway in a Cloudflare Worker</title>
+      <link>https://bibs.codes/posts/cloudflare-worker-api-gateway/</link>
+      <pubDate>Mon, 18 Feb 2019 00:00:00 +0000</pubDate>
+      <author>bibby@bibs.codes (James Bibby)</author>
+      <guid>https://bibs.codes/posts/cloudflare-worker-api-gateway/</guid>
+      <description>I read a lot of articles (waaay to many) about what to write for a first blog post, in the end I settled on what was on my mind right now. I have been working on some CloudFlare Workers for a number of different things: serving SPAs from S3, adding special headers to certain requests, geo-redirection&amp;hellip; and a question came up about our URL structure at work. We have a microservice architecture with domain based routing.</description>
+    </item>
+    
+    <item>
       <title>About Me</title>
       <link>https://bibs.codes/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
