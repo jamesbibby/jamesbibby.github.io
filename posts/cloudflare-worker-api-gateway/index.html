@@ -290,13 +290,13 @@ if (!doNotTrack) {
 <p>In the old HTTP/1 world each request would open a connection to the server and close it once all the data was received.  In the new HTTP/2 world a connection to the same server can be reused for mutiple requests.</p>
 
 <p><div style="background-color: white; margin-bottom: 2em">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/HTTP_persistent_connection.svg/2560px-HTTP_persistent_connection.svg.png" alt="HTTP Persistent Connections Diagram">
+<img src="/posts/images/HTTP_persistent_connection.png" alt="HTTP Persistent Connections Diagram" />
 </div>
 Image by <a href="https://commons.wikimedia.org/wiki/User:Helix84">helix84</a> via <a href="https://en.wikipedia.org/wiki/HTTP_persistent_connection">Wikipedia</a></p>
 
 <p>This may not seem like a big deal, but when all of your requests are secure <em>(you are using HTTPS for all requsts right?)</em>  this means multiple round trips from the client to the server.  Depending on the distance from the user to your servers, this could add hundereds of milliseconds for each request.</p>
 
-<p><img src="tls-ssl-handshake.png" alt="TLS handshake" />
+<p><img src="/posts/images/tls-ssl-handshake.png" alt="TLS handshake" />
 <a href="https://www.cloudflare.com/learning/security/glossary/transport-layer-security-tls/">Image Source</a></p>
 
 <h2 id="api-gateway-for-performance">API Gateway for Performance</h2>
