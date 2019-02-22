@@ -63,7 +63,7 @@
   "headline": "API Gateway in a Cloudflare Worker",
   "description" : "Learn to build a few simple CloudFlare workers",
   "inLanguage" : "en",
-  "wordCount": 939,
+  "wordCount": 698,
   "datePublished" : "2019-02-18T00:00:00",
   "dateModified" : "2019-02-18T00:00:00",
   "image" : "https://bibs.codes/jumping_guitar_square.jpg",
@@ -272,10 +272,10 @@ if (!doNotTrack) {
   <i class="fas fa-calendar"></i>&nbsp;Posted on February 18, 2019
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;5&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;4&nbsp;minutes
   
   
-    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;939&nbsp;words
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;698&nbsp;words
   
   
     &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;James Bibby
@@ -334,12 +334,9 @@ Image by <a href="https://commons.wikimedia.org/wiki/User:Helix84">helix84</a> v
 
 <p>A hello world type example would be as simple as mapping a url pattern to the following worker:</p>
 
-<p><em>hello_world.js</em></p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// listening to the fetch event is how to intercept requests in a worker
-</span><span class="c1"></span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;fetch&#39;</span><span class="p">,</span> <span class="nx">event</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">event</span><span class="p">.</span><span class="nx">respondWith</span><span class="p">(</span><span class="k">new</span> <span class="nx">Response</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">))</span>
-<span class="p">})</span>
-</code></pre></div>
+<p><script type="application/javascript" src="//gist.github.com/jamesbibby/74b0ee01a828649e7f5a5477ee9b3fec.js"></script>
+<em>hello_world.js</em></p>
+
 <p>All requests to that url pattern would simply return a standard HTTP 200 response with &ldquo;hello world&rdquo; as the payload.  Simple, and you don&rsquo;t need anything else, no other server, the worker returns the full response.</p>
 
 <h2 id="a-simple-more-useful-single-page-application-router">A Simple (more useful) Single Page Application Router</h2>
@@ -354,32 +351,9 @@ Image by <a href="https://commons.wikimedia.org/wiki/User:Helix84">helix84</a> v
 
 <p>In this (simple) example we will forward any request for an asset path to the S3 bucket, and return the SPA index.html for any other path.</p>
 
-<p><em>spa_router.js</em></p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">const</span> <span class="nx">ASSET_PATHS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;/img/&#34;</span><span class="p">,</span> <span class="s2">&#34;/css/&#34;</span><span class="p">,</span> <span class="s2">&#34;/js/&#34;</span><span class="p">];</span>
-<span class="k">const</span> <span class="nx">S3_BUCKET</span> <span class="o">=</span> <span class="s2">&#34;my-site-bucket&#34;</span><span class="p">;</span>
+<p><script type="application/javascript" src="//gist.github.com/jamesbibby/eb99c8ead761b1f3b70762b6cbf27793.js"></script>
+<em>spa_router.js</em></p>
 
-<span class="c1">// the SPA request router
-</span><span class="c1"></span><span class="kr">async</span> <span class="kd">function</span> <span class="nx">handleRequest</span><span class="p">(</span><span class="nx">request</span><span class="p">)</span> <span class="p">{</span>
-	<span class="c1">// lets parse the URL into a proper URL object
-</span><span class="c1"></span>	<span class="k">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">URL</span><span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">url</span><span class="p">);</span>
-	
-	<span class="c1">// if this is not an asset, return index.html
-</span><span class="c1"></span>	<span class="k">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">ASSET_PATH</span><span class="p">.</span><span class="nx">some</span><span class="p">((</span><span class="nx">path</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">url</span><span class="p">.</span><span class="nx">pathname</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="nx">path</span><span class="p">)))</span> <span class="o">?</span>
-	 	<span class="nx">url</span><span class="p">.</span><span class="nx">pathname</span> <span class="o">:</span> <span class="s1">&#39;index.html&#39;</span><span class="p">;</span>
-	
-	<span class="c1">// fetch the path from S3, include the original response 
-</span><span class="c1"></span>	<span class="c1">// so that headers, auth, etc aren&#39;t lost
-</span><span class="c1"></span>	<span class="k">return</span> <span class="nx">fetch</span><span class="p">(</span>
-		<span class="sb">`https://</span><span class="si">${</span><span class="nx">S3_BUCKET</span><span class="si">}</span><span class="sb">.s3.amazonaws.com/</span><span class="si">${</span><span class="nx">path</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
-		<span class="nx">response</span>
-	<span class="p">);</span>
-<span class="p">}</span>
-
-<span class="c1">// add an event listener for fetch that calls the handler
-</span><span class="c1"></span><span class="nx">self</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;fetch&#39;</span><span class="p">,</span> <span class="nx">event</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">event</span><span class="p">.</span><span class="nx">respondWith</span><span class="p">(</span><span class="nx">handleRequest</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">request</span><span class="p">));</span>
-<span class="p">});</span>
-</code></pre></div>
 <p>We now have an SPA router that will return our index.html for any request that is not in the predefined asset paths, and the appropriate asset for anything that is.</p>
 
 <h2 id="the-api-gateway">The API Gateway</h2>
@@ -390,40 +364,9 @@ Image by <a href="https://commons.wikimedia.org/wiki/User:Helix84">helix84</a> v
 
 <p>The following code should intercept those requests and forward them to the correct service.</p>
 
-<p><em>api_gateway.js</em></p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// The base url for the site
-</span><span class="c1"></span><span class="k">const</span> <span class="nx">baseURL</span> <span class="o">=</span> <span class="s1">&#39;.bibs.codes&#39;</span><span class="p">;</span>
+<p><script type="application/javascript" src="//gist.github.com/jamesbibby/c29a7e6b28eb6878be66ea976a2d714b.js"></script>
+<em>api_gateway.js</em></p>
 
-<span class="cm">/**
-</span><span class="cm">The actual request handler
-</span><span class="cm">Remaps the URL from: api.bibs.codes/service_name to service_name.bibs.codes
-</span><span class="cm">**/</span>
-<span class="kr">async</span> <span class="kd">function</span> <span class="nx">handleRequest</span><span class="p">(</span><span class="nx">request</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">URL</span><span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">url</span><span class="p">);</span>
-  <span class="c1">// skip the leading &#39;/&#39; and split the request
-</span><span class="c1"></span>  <span class="k">const</span> <span class="nx">parts</span> <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nx">pathname</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">);</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">parts</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span> <span class="o">||</span> <span class="nx">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// if there is no service name, return a 404
-</span><span class="c1"></span>    <span class="k">return</span> <span class="k">new</span> <span class="nx">Response</span><span class="p">(</span><span class="s1">&#39;Service Not Provided&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">status</span><span class="o">:</span> <span class="mi">404</span> <span class="p">});</span>
-  <span class="p">}</span>
-  <span class="k">const</span> <span class="nx">serviceURL</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span>
-    <span class="nx">url</span><span class="p">.</span><span class="nx">protocol</span><span class="p">,</span> <span class="c1">// use the same protocol
-</span><span class="c1"></span>    <span class="s1">&#39;//&#39;</span><span class="p">,</span>
-    <span class="nx">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="c1">// the service name
-</span><span class="c1"></span>    <span class="s1">&#39;.bibs.codes/&#39;</span><span class="p">,</span>
-    <span class="nx">parts</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">),</span> <span class="c1">// the rest of the path after the service name
-</span><span class="c1"></span>    <span class="nx">url</span><span class="p">.</span><span class="nx">search</span> <span class="c1">// the query string
-</span><span class="c1"></span>  <span class="p">);</span>
-  <span class="k">return</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">serviceURL</span><span class="p">,</span> <span class="nx">request</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="cm">/**
-</span><span class="cm">Register the request handler
-</span><span class="cm">**/</span>
-<span class="nx">self</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;fetch&#39;</span><span class="p">,</span> <span class="nx">event</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">event</span><span class="p">.</span><span class="nx">respondWith</span><span class="p">(</span><span class="nx">handleRequest</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">request</span><span class="p">));</span>
-<span class="p">});</span>
-</code></pre></div>
 <p>Now you can register the worker above to match the path <code>https://api.bibs.codes/*</code> and start moving your front end code over to the new URL format.</p>
 
 <p>You can find the source code (and a unit test) in the <a href="https://github.com/jamesbibby/cloudflare-api-gateway">GitHub repository</a>.</p>
