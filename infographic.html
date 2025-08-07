@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>European Tour: A Data-Driven Itinerary</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flow-line {
+            width: 2px;
+            flex-grow: 1;
+        }
+        .flow-dot {
+            width: 20px;
+            height: 20px;
+        }
+        .flow-icon {
+            font-size: 1.5rem;
+            line-height: 2rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#073B4C] mb-2">Anatomy of a 22-Day European Tour</h1>
+            <p class="text-lg text-[#118AB2]">A Data-Driven Itinerary for October 2025</p>
+        </header>
+
+        <main class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+            <div class="lg:col-span-2 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#073B4C] mb-4">Trip at a Glance</h2>
+                 <p class="text-gray-600 mb-6">The itinerary is a carefully balanced blend of professional obligations, leisure travel, and cultural immersion. This high-level overview breaks down the trip's core components, from its duration and geographic footprint to the allocation of time across different activities.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <div class="grid grid-cols-3 gap-4 text-center">
+                            <div>
+                                <p class="text-4xl font-bold text-[#FF6B6B]">22</p>
+                                <p class="text-sm text-gray-500">Total Days</p>
+                            </div>
+                            <div>
+                                <p class="text-4xl font-bold text-[#FFD166]">4</p>
+                                <p class="text-sm text-gray-500">Countries Visited</p>
+                            </div>
+                            <div>
+                                <p class="text-4xl font-bold text-[#06D6A0]">4</p>
+                                <p class="text-sm text-gray-500">Key Cities</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="chart-container h-64 md:h-auto">
+                            <canvas id="purposeChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#073B4C] mb-4">The Itinerary Flow</h2>
+                <p class="text-gray-600 mb-8">This timeline visualizes the journey's progression across Europe, highlighting the sequence of destinations and the key events that anchor the schedule. The flow demonstrates a strategic path that minimizes backtracking and maximizes time in each location.</p>
+                <div class="relative">
+                    <div class="flex flex-col items-center">
+                        <div class="w-full flex items-center justify-between mb-4">
+                            <div class="text-center w-1/4">
+                                <div class="flow-icon">✈️</div>
+                                <p class="font-bold">Oct 4-5</p>
+                                <p class="text-sm">Toronto → Paris</p>
+                            </div>
+                            <div class="flow-line bg-[#118AB2]"></div>
+                            <div class="text-center w-1/4">
+                                <div class="flow-icon">💼</div>
+                                <p class="font-bold">Oct 6-11</p>
+                                <p class="text-sm">Paris: Work & Friends</p>
+                            </div>
+                            <div class="flow-line bg-[#118AB2]"></div>
+                            <div class="text-center w-1/4">
+                                <div class="flow-icon">🚆</div>
+                                <p class="font-bold">Oct 12</p>
+                                <p class="text-sm">Paris → London</p>
+                            </div>
+                             <div class="flow-line bg-[#118AB2]"></div>
+                            <div class="text-center w-1/4">
+                                <div class="flow-icon">🇬🇧</div>
+                                <p class="font-bold">Oct 13-16</p>
+                                <p class="text-sm">London: Friends & Culture</p>
+                            </div>
+                        </div>
+                         <div class="w-full flex items-center justify-between mb-4">
+                            <div class="text-center w-1/4">
+                                <div class="flow-icon">✈️</div>
+                                <p class="font-bold">Oct 17</p>
+                                <p class="text-sm">London → Turin</p>
+                            </div>
+                            <div class="flow-line bg-[#06D6A0]"></div>
+                            <div class="text-center w-1/4">
+                                <div class="flow-icon">🍄</div>
+                                <p class="font-bold">Oct 17-20</p>
+                                <p class="text-sm">Alba: Truffle Fair</p>
+                            </div>
+                            <div class="flow-line bg-[#06D6A0]"></div>
+                            <div class="text-center w-1/4">
+                                <div class="flow-icon">✈️</div>
+                                <p class="font-bold">Oct 20</p>
+                                <p class="text-sm">Turin → Amsterdam</p>
+                            </div>
+                             <div class="flow-line bg-[#06D6A0]"></div>
+                            <div class="text-center w-1/4">
+                                <div class="flow-icon">🎧</div>
+                                <p class="font-bold">Oct 21-25</p>
+                                <p class="text-sm">Amsterdam: ADE</p>
+                            </div>
+                        </div>
+                         <div class="w-full flex items-center justify-start">
+                            <div class="text-center w-1/4">
+                                <div class="flow-icon">🚆</div>
+                                <p class="font-bold">Oct 25</p>
+                                <p class="text-sm">Amsterdam → Paris</p>
+                            </div>
+                            <div class="flow-line bg-[#FF6B6B]"></div>
+                             <div class="text-center w-1/4">
+                                <div class="flow-icon">✈️</div>
+                                <p class="font-bold">Oct 26</p>
+                                <p class="text-sm">Paris → Toronto</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#073B4C] mb-4">Mobility Analysis</h2>
+                 <p class="text-gray-600 mb-6">The itinerary relies on a multi-modal transport strategy. This chart compares the efficiency of high-speed rail versus air travel for the key Paris-London route, factoring in total door-to-door time, not just flight duration.</p>
+                <div class="chart-container">
+                    <canvas id="transportChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#073B4C] mb-4">Intra-Europe Travel Costs</h2>
+                <p class="text-gray-600 mb-6">Booking in advance is key to managing costs. This chart breaks down the estimated prices for the four major pre-booked travel legs of the journey, demonstrating the value of high-speed rail and budget airlines for point-to-point travel.</p>
+                <div class="chart-container">
+                    <canvas id="costChart"></canvas>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#073B4C] mb-4">Strategic Booking Timeline</h2>
+                <p class="text-gray-600 mb-8">A phased booking approach is crucial for securing availability and the best prices, especially for high-demand events and transport. This plan prioritizes the most time-sensitive and critical reservations.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="border-l-4 border-[#FF6B6B] pl-4">
+                        <h3 class="font-bold text-lg text-[#073B4C]">Phase 1: Immediate</h3>
+                        <ul class="list-disc list-inside text-gray-600 mt-2 text-sm">
+                            <li>Eurostar Tickets</li>
+                            <li>Alba & London Accommodation</li>
+                            <li>Turin Rental Car</li>
+                        </ul>
+                    </div>
+                    <div class="border-l-4 border-[#FFD166] pl-4">
+                        <h3 class="font-bold text-lg text-[#073B4C]">Phase 2: Near-Term</h3>
+                        <ul class="list-disc list-inside text-gray-600 mt-2 text-sm">
+                            <li>Intra-European Flights</li>
+                            <li>ADE Festival Tickets</li>
+                        </ul>
+                    </div>
+                    <div class="border-l-4 border-[#06D6A0] pl-4">
+                        <h3 class="font-bold text-lg text-[#073B4C]">Phase 3: Monitor & Finalize</h3>
+                        <ul class="list-disc list-inside text-gray-600 mt-2 text-sm">
+                            <li>Cultural Event Tickets</li>
+                            <li>Aeroplan Points Monitoring</li>
+                            <li>Final Confirmations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const energeticPlayful = {
+                red: '#FF6B6B',
+                yellow: '#FFD166',
+                green: '#06D6A0',
+                blue: '#118AB2',
+                darkBlue: '#073B4C'
+            };
+
+            const wrapLabel = (label) => {
+                const maxLength = 16;
+                if (label.length <= maxLength) {
+                    return label;
+                }
+                const words = label.split(' ');
+                let lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + word).length > maxLength) {
+                        lines.push(currentLine.trim());
+                        currentLine = '';
+                    }
+                    currentLine += word + ' ';
+                });
+                lines.push(currentLine.trim());
+                return lines;
+            };
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
+                return label;
+            };
+            
+            const defaultChartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: energeticPlayful.darkBlue
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        ticks: { color: energeticPlayful.darkBlue },
+                        grid: { color: '#e0e0e0' }
+                    },
+                    x: {
+                        ticks: { color: energeticPlayful.darkBlue },
+                        grid: { display: false }
+                    }
+                }
+            };
+
+            const purposeCtx = document.getElementById('purposeChart').getContext('2d');
+            new Chart(purposeCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Leisure & Events', 'Work', 'Travel Days'],
+                    datasets: [{
+                        label: 'Trip Purpose',
+                        data: [68, 23, 9],
+                        backgroundColor: [
+                            energeticPlayful.blue,
+                            energeticPlayful.green,
+                            energeticPlayful.yellow
+                        ],
+                        borderColor: '#ffffff',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: energeticPlayful.darkBlue
+                            }
+                        },
+                        tooltip: {
+                           callbacks: {
+                                title: tooltipTitleCallback
+                            }
+                        }
+                    }
+                }
+            });
+
+            const transportCtx = document.getElementById('transportChart').getContext('2d');
+            new Chart(transportCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['High-Speed Train', 'Air Travel'],
+                    datasets: [{
+                        label: 'Est. Door-to-Door Time (Hours)',
+                        data: [2.7, 4.5],
+                        backgroundColor: energeticPlayful.red,
+                        borderColor: energeticPlayful.red,
+                        borderWidth: 1
+                    }]
+                },
+                options: { ...defaultChartOptions, indexAxis: 'y' }
+            });
+
+            const costCtx = document.getElementById('costChart').getContext('2d');
+            const costLabels = ['Paris → London (Train)', 'London → Turin (Flight)', 'Turin → Amsterdam (Flight)', 'Amsterdam → Paris (Train)'];
+            new Chart(costCtx, {
+                type: 'bar',
+                data: {
+                    labels: costLabels.map(label => wrapLabel(label)),
+                    datasets: [{
+                        label: 'Estimated Cost ($USD)',
+                        data: [51, 30, 68, 49],
+                        backgroundColor: [
+                            energeticPlayful.red,
+                            energeticPlayful.yellow,
+                            energeticPlayful.green,
+                            energeticPlayful.blue
+                        ]
+                    }]
+                },
+                options: defaultChartOptions
+            });
+        });
+    </script>
+</body>
+</html>
+

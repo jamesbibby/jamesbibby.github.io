@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive European Trip Dashboard</title>
+    <!-- Chosen Palette: Calm & Collected -->
+    <!-- Application Structure Plan: The application is designed as a single-page, multi-section dashboard to provide a holistic and interactive overview of the trip. The structure prioritizes user tasks and data exploration over the linear format of the source report. The flow is: 1) A 'Mission Control' header with key stats for an immediate overview. 2) An 'Interactive Itinerary' timeline, which is the core visual narrative of the journey. 3) A 'Logistics & Costs' section with interactive charts for deep-diving into budget and transport analytics. 4) An 'Accommodation Hub' with clear, comparable options. 5) A 'Booking Checklist' to transform the plan into actionable steps. This structure was chosen to allow a user to grasp the full scope of the trip at a glance, then drill down into specific planning areas (costs, bookings) in a non-linear fashion, which is more effective for complex project management like trip planning. -->
+    <!-- Visualization & Content Choices: 1) Itinerary: Goal is to Organize/show Change. A custom HTML/CSS vertical timeline was chosen over a library for its design flexibility and simplicity. Interaction involves hover states for clarity. 2) Budget: Goal is to Inform/show Composition. A Chart.js Donut chart is used to clearly show the proportion of total estimated costs. 3) Transport: Goal is to Compare. A Chart.js grouped Bar chart with an interactive toggle (JS) allows direct comparison of time vs. cost for train and air travel on key routes, making the report's analysis immediately tangible. 4) Checklist: Goal is to Organize/track progress. A simple HTML list with JS-powered checkboxes provides a satisfying and clear sense of completion. All visualizations use Chart.js on Canvas, adhering to the NO SVG/Mermaid constraint. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F7F4;
+            color: #4A4A4A;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 19px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #D1D5DB;
+        }
+        .timeline-item:last-child::before {
+            display: none;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 10px;
+            top: 4px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 3px solid #F8F7F4;
+        }
+        .checklist-item input:checked + label {
+            text-decoration: line-through;
+            color: #9CA3AF;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+
+        <header class="mb-10 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#333A45] mb-2">European Tour Mission Control</h1>
+            <p class="text-lg text-[#6B7280]">An Interactive Dashboard for Your October 2025 Journey</p>
+        </header>
+
+        <section id="overview" class="mb-12 bg-white rounded-xl shadow-sm p-6">
+            <h2 class="text-2xl font-bold text-[#333A45] mb-4">Trip at a Glance</h2>
+            <p class="text-[#6B7280] mb-6 max-w-3xl mx-auto text-center">This high-level summary provides the core metrics of your journey, framing the overall scope of the 22-day tour across four distinct European nations.</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center max-w-4xl mx-auto">
+                <div class="bg-[#F8F7F4] p-4 rounded-lg">
+                    <div class="text-4xl font-bold text-[#5A67D8]">22</div>
+                    <div class="text-sm text-[#6B7280] mt-1">Total Days</div>
+                </div>
+                <div class="bg-[#F8F7F4] p-4 rounded-lg">
+                    <div class="text-4xl font-bold text-[#5A67D8]">4</div>
+                    <div class="text-sm text-[#6B7280] mt-1">Countries</div>
+                </div>
+                <div class="bg-[#F8F7F4] p-4 rounded-lg">
+                    <div class="text-4xl font-bold text-[#5A67D8]">4</div>
+                    <div class="text-sm text-[#6B7280] mt-1">Primary Cities</div>
+                </div>
+                <div class="bg-[#F8F7F4] p-4 rounded-lg">
+                    <div class="text-4xl font-bold text-[#5A67D8]">2</div>
+                    <div class="text-sm text-[#6B7280] mt-1">Major Festivals</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="itinerary" class="mb-12">
+            <h2 class="text-3xl font-bold text-[#333A45] mb-2 text-center">Interactive Itinerary</h2>
+            <p class="text-[#6B7280] mb-8 max-w-3xl mx-auto text-center">Follow the day-by-day flow of your journey. This timeline outlines each major phase, from work commitments in Paris to cultural deep-dives in Alba and Amsterdam.</p>
+            <div class="relative pl-8">
+                <!-- Itinerary Items will be dynamically inserted here if using a framework, but are hardcoded for this SPA -->
+                <div class="timeline-item relative pb-8">
+                    <div class="timeline-dot bg-[#8A9B68]"></div>
+                    <div class="ml-8">
+                        <p class="font-bold text-lg text-[#333A45]">Oct 4-5: Transatlantic Crossing ✈️</p>
+                        <p class="text-sm text-[#6B7280]">Depart Toronto (YYZ) on LH6825 (operated by Air Canada), arriving at Paris (CDG) on Oct 5. Transfer to accommodation and acclimatize.</p>
+                    </div>
+                </div>
+                <div class="timeline-item relative pb-8">
+                    <div class="timeline-dot bg-[#5A67D8]"></div>
+                    <div class="ml-8">
+                        <p class="font-bold text-lg text-[#333A45]">Oct 6-11: Paris: Work & Leisure 🇫🇷</p>
+                        <p class="text-sm text-[#6B7280]">Five days of work at the Datadog office, followed by a Saturday dedicated to visiting friends.</p>
+                    </div>
+                </div>
+                <div class="timeline-item relative pb-8">
+                    <div class="timeline-dot bg-[#8A9B68]"></div>
+                    <div class="ml-8">
+                        <p class="font-bold text-lg text-[#333A45]">Oct 12-16: London Calling 🇬🇧</p>
+                        <p class="text-sm text-[#6B7280]">Travel via Eurostar to London for four full days to connect with friends and explore the city's cultural offerings like the BFI Film Festival or Frieze Art Fair.</p>
+                    </div>
+                </div>
+                <div class="timeline-item relative pb-8">
+                    <div class="timeline-dot bg-[#D98B72]"></div>
+                    <div class="ml-8">
+                        <p class="font-bold text-lg text-[#333A45]">Oct 17-20: Piedmont Expedition 🇮🇹</p>
+                        <p class="text-sm text-[#6B7280]">Fly to Turin (TRN), pick up a rental car, and drive to Alba for the International White Truffle Fair. Includes a cooking class on the final morning.</p>
+                    </div>
+                </div>
+                 <div class="timeline-item relative pb-8">
+                    <div class="timeline-dot bg-[#5A67D8]"></div>
+                    <div class="ml-8">
+                        <p class="font-bold text-lg text-[#333A45]">Oct 20-25: Amsterdam Dance Event 🇳🇱</p>
+                        <p class="text-sm text-[#6B7280]">Fly from Turin to Amsterdam. Immerse in the world's largest electronic music festival while staying with friends.</p>
+                    </div>
+                </div>
+                <div class="timeline-item relative">
+                    <div class="timeline-dot bg-[#8A9B68]"></div>
+                    <div class="ml-8">
+                        <p class="font-bold text-lg text-[#333A45]">Oct 25-26: Final Leg & Departure ✈️</p>
+                        <p class="text-sm text-[#6B7280]">Take an evening Eurostar from Amsterdam back to Paris. Enjoy a final morning before departing from CDG on AC0873.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="logistics" class="mb-12">
+             <h2 class="text-3xl font-bold text-[#333A45] mb-2 text-center">Logistics & Costs Dashboard</h2>
+            <p class="text-[#6B7280] mb-8 max-w-3xl mx-auto text-center">Analyze the key financial and logistical data for your trip. Interact with the charts to compare transportation options and understand the budget breakdown.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <h3 class="text-xl font-bold text-[#333A45] mb-4">Estimated Budget Breakdown</h3>
+                    <div class="chart-container">
+                        <canvas id="budgetChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold text-[#333A45]">Transport Mode Analysis</h3>
+                        <div class="flex space-x-1 bg-gray-200 rounded-lg p-1">
+                            <button id="btnParLon" class="px-3 py-1 text-sm rounded-md bg-white shadow text-[#5A67D8] font-semibold">Paris↔Lon</button>
+                            <button id="btnAmsPar" class="px-3 py-1 text-sm rounded-md text-gray-600">Ams↔Paris</button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="transportChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="accommodations" class="mb-12">
+            <h2 class="text-3xl font-bold text-[#333A45] mb-2 text-center">Accommodation Hub</h2>
+            <p class="text-[#6B7280] mb-8 max-w-3xl mx-auto text-center">Explore the curated accommodation recommendations for London and Alba. These options are selected for their prime locations, value, and high guest ratings.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden flex flex-col">
+                    <div class="p-6 flex-grow">
+                        <p class="text-sm font-semibold text-[#5A67D8]">London</p>
+                        <h3 class="text-xl font-bold text-[#333A45] mt-1">The Hoxton, Southwark</h3>
+                        <p class="text-sm text-[#6B7280] mt-2 flex-grow">Industrial-chic design with a popular rooftop restaurant. Excellent access to the Jubilee Line and key South Bank attractions.</p>
+                    </div>
+                    <div class="p-6 bg-gray-50 border-t">
+                        <span class="text-2xl font-bold text-[#333A45]">$264</span>
+                        <span class="text-sm text-gray-500">/ night (est.)</span>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden flex flex-col">
+                    <div class="p-6 flex-grow">
+                        <p class="text-sm font-semibold text-[#5A67D8]">London</p>
+                        <h3 class="text-xl font-bold text-[#333A45] mt-1">The Resident, Covent Garden</h3>
+                        <p class="text-sm text-[#6B7280] mt-2 flex-grow">A quiet, refined oasis in the heart of the theatre district. Rooms feature in-room mini-kitchens for added convenience.</p>
+                    </div>
+                     <div class="p-6 bg-gray-50 border-t">
+                        <span class="text-2xl font-bold text-[#333A45]">~$280</span>
+                        <span class="text-sm text-gray-500">/ night (est.)</span>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden flex flex-col">
+                    <div class="p-6 flex-grow">
+                        <p class="text-sm font-semibold text-[#D98B72]">Alba Region</p>
+                        <h3 class="text-xl font-bold text-[#333A45] mt-1">Cascina Baràc</h3>
+                        <p class="text-sm text-[#6B7280] mt-2 flex-grow">Authentic agriturismo experience in a restored farmhouse set in its own vineyards. Offers on-site wine tours and tastings.</p>
+                    </div>
+                     <div class="p-6 bg-gray-50 border-t">
+                        <span class="text-2xl font-bold text-[#333A45]">$128+</span>
+                        <span class="text-sm text-gray-500">/ night (est.)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="checklist">
+            <h2 class="text-3xl font-bold text-[#333A45] mb-2 text-center">Strategic Booking Checklist</h2>
+            <p class="text-[#6B7280] mb-8 max-w-3xl mx-auto text-center">Execute your plan successfully by following this prioritized booking timeline. Check items off as you complete them to track your progress.</p>
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="text-xl font-bold text-[#D98B72] mb-4">Phase 1: Book Immediately</h3>
+                    <ul id="phase1-list" class="space-y-3">
+                        <li class="checklist-item"><input type="checkbox" id="c1" class="mr-2"><label for="c1">Eurostar: Paris → London (Oct 12)</label></li>
+                        <li class="checklist-item"><input type="checkbox" id="c2" class="mr-2"><label for="c2">Eurostar: Amsterdam → Paris (Oct 25)</label></li>
+                        <li class="checklist-item"><input type="checkbox" id="c3" class="mr-2"><label for="c3">Accommodation: London (Oct 12-17)</label></li>
+                        <li class="checklist-item"><input type="checkbox" id="c4" class="mr-2"><label for="c4">Accommodation: Alba (Oct 17-20)</label></li>
+                        <li class="checklist-item"><input type="checkbox" id="c5" class="mr-2"><label for="c5">Rental Car: Turin (Oct 17-20)</label></li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="text-xl font-bold text-[#8A9B68] mb-4">Phase 2: Near-Term & Finalize</h3>
+                     <ul id="phase2-list" class="space-y-3">
+                        <li class="checklist-item"><input type="checkbox" id="c6" class="mr-2"><label for="c6">Flight: London → Turin (Oct 17)</label></li>
+                        <li class="checklist-item"><input type="checkbox" id="c7" class="mr-2"><label for="c7">Flight: Turin → Amsterdam (Oct 20)</label></li>
+                        <li class="checklist-item"><input type="checkbox" id="c8" class="mr-2"><label for="c8">Purchase ADE Tickets</label></li>
+                        <li class="checklist-item"><input type="checkbox" id="c9" class="mr-2"><label for="c9">Book London cultural events (BFI/Frieze)</label></li>
+                         <li class="checklist-item"><input type="checkbox" id="c10" class="mr-2"><label for="c10">Monitor Aeroplan points as backup</label></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const palette = {
+                primary: '#5A67D8',
+                secondary: '#8A9B68',
+                accent: '#D98B72',
+                lightBg: '#F8F7F4',
+                textDark: '#333A45',
+                textLight: '#6B7280',
+                gray: '#D1D5DB'
+            };
+
+            const budgetData = {
+                labels: ['London Hotels', 'Alba Hotel', 'Intra-Europe Travel', 'Events', 'Car Rental'],
+                datasets: [{
+                    data: [1056, 384, 198, 160, 200],
+                    backgroundColor: [palette.primary, palette.secondary, palette.accent, '#FBBF24', palette.textLight],
+                    borderColor: palette.lightBg,
+                    borderWidth: 4,
+                }]
+            };
+
+            const transportData = {
+                parLon: {
+                    labels: ['Time (Hours)', 'Cost (USD)'],
+                    datasets: [
+                        { label: 'Eurostar Train', data: [2.7, 51], backgroundColor: palette.primary },
+                        { label: 'Flight', data: [4.5, 65], backgroundColor: palette.accent }
+                    ]
+                },
+                amsPar: {
+                    labels: ['Time (Hours)', 'Cost (USD)'],
+                    datasets: [
+                        { label: 'Eurostar Train', data: [3.3, 49], backgroundColor: palette.primary },
+                        { label: 'Flight', data: [4.5, 165], backgroundColor: palette.accent }
+                    ]
+                }
+            };
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                return Array.isArray(label) ? label.join(' ') : label;
+            };
+
+            const budgetCtx = document.getElementById('budgetChart').getContext('2d');
+            new Chart(budgetCtx, {
+                type: 'doughnut',
+                data: budgetData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { color: palette.textDark } },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    }
+                }
+            });
+
+            const transportCtx = document.getElementById('transportChart').getContext('2d');
+            const transportChart = new Chart(transportCtx, {
+                type: 'bar',
+                data: transportData.parLon,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { color: palette.textDark } },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, ticks: { color: palette.textDark } },
+                        x: { ticks: { color: palette.textDark } }
+                    }
+                }
+            });
+
+            const btnParLon = document.getElementById('btnParLon');
+            const btnAmsPar = document.getElementById('btnAmsPar');
+
+            btnParLon.addEventListener('click', () => {
+                transportChart.data = transportData.parLon;
+                transportChart.update();
+                btnParLon.classList.add('bg-white', 'shadow', 'text-[#5A67D8]', 'font-semibold');
+                btnAmsPar.classList.remove('bg-white', 'shadow', 'text-[#5A67D8]', 'font-semibold');
+            });
+
+            btnAmsPar.addEventListener('click', () => {
+                transportChart.data = transportData.amsPar;
+                transportChart.update();
+                btnAmsPar.classList.add('bg-white', 'shadow', 'text-[#5A67D8]', 'font-semibold');
+                btnParLon.classList.remove('bg-white', 'shadow', 'text-[#5A67D8]', 'font-semibold');
+            });
+        });
+    </script>
+</body>
+</html>
+
