@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive European Trip Dashboard</title>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y1Y95ZVPL6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-Y1Y95ZVPL6');
+    </script>
+    
     <!-- Chosen Palette: Calm & Collected -->
     <!-- Application Structure Plan: The application is designed as a single-page, multi-section dashboard to provide a holistic and interactive overview of the trip. The structure prioritizes user tasks and data exploration over the linear format of the source report. The flow is: 1) A 'Mission Control' header with key stats for an immediate overview. 2) An 'Interactive Itinerary' timeline, which is the core visual narrative of the journey. 3) A 'Logistics & Costs' section with interactive charts for deep-diving into budget and transport analytics. 4) An 'Accommodation Hub' with clear, comparable options. 5) A 'Booking Checklist' to transform the plan into actionable steps. This structure was chosen to allow a user to grasp the full scope of the trip at a glance, then drill down into specific planning areas (costs, bookings) in a non-linear fashion, which is more effective for complex project management like trip planning. -->
     <!-- Visualization & Content Choices: 1) Itinerary: Goal is to Organize/show Change. A custom HTML/CSS vertical timeline was chosen over a library for its design flexibility and simplicity. Interaction involves hover states for clarity. 2) Budget: Goal is to Inform/show Composition. A Chart.js Donut chart is used to clearly show the proportion of total estimated costs. 3) Transport: Goal is to Compare. A Chart.js grouped Bar chart with an interactive toggle (JS) allows direct comparison of time vs. cost for train and air travel on key routes, making the report's analysis immediately tangible. 4) Checklist: Goal is to Organize/track progress. A simple HTML list with JS-powered checkboxes provides a satisfying and clear sense of completion. All visualizations use Chart.js on Canvas, adhering to the NO SVG/Mermaid constraint. -->
