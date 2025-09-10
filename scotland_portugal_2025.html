@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Grand Tour: Scotland, Portugal & England</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chosen Palette: Warm Neutrals (Amber/Slate) -->
+    <!-- Application Structure Plan: The application is designed as a single-page interactive itinerary. A tab-based navigation structure was chosen to logically segment the trip into its three main parts: Scotland, Portugal, and the UK Return. This allows users to easily access the information relevant to their current location without being overwhelmed by a long, scrolling page. This chronological and geographical grouping is the most intuitive user flow for a travel plan. Within each tab, information is categorized (Sightseeing, Food, Events) and presented in a clean card format, making specific details easy to find and digest. This structure prioritizes clarity and ease of use, which is ideal for a travel reference guide. -->
+    <!-- Visualization & Content Choices: The source material is a travel itinerary, which is qualitative and descriptive. Therefore, the goal is to organize and present information clearly, not to visualize quantitative data. Report Info: Itinerary locations & interests -> Goal: Inform & Organize -> Viz/Presentation Method: Styled HTML cards with Unicode icons for visual cues. -> Interaction: JS-powered tabs for navigation. -> Justification: This approach is direct, highly readable, and responsive. Tabs are a standard, user-friendly pattern for sectioning content, and cards are excellent for presenting distinct pieces of information. This avoids unnecessary complexity and focuses on delivering helpful content effectively. -> Library/Method: Vanilla JS for tab functionality, Tailwind CSS for styling. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .active-tab {
+            border-color: #fbbf24;
+            background-color: #fef3c7;
+            color: #92400e;
+            font-weight: 600;
+        }
+        .content-card {
+            visibility: visible;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .hidden-content {
+           display: none;
+        }
+    </style>
+</head>
+<body class="bg-amber-50 text-slate-800">
+
+    <div class="container mx-auto p-4 sm:p-6 md:p-8">
+        
+        <header class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-amber-900">A Grand Tour</h1>
+            <p class="text-lg text-slate-600 mt-2">An Interactive Travel Guide for September 10th - 28th</p>
+        </header>
+
+        <nav id="tab-nav" class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8">
+            <button data-tab="scotland" class="tab-button active-tab text-sm sm:text-base py-2 px-4 rounded-lg border-2 border-transparent transition-colors duration-300">
+                Scotland (Sept 11-13)
+            </button>
+            <button data-tab="portugal" class="tab-button text-sm sm:text-base py-2 px-4 rounded-lg border-2 border-transparent transition-colors duration-300">
+                Portugal (Sept 13-20)
+            </button>
+            <button data-tab="uk_return" class="tab-button text-sm sm:text-base py-2 px-4 rounded-lg border-2 border-transparent transition-colors duration-300">
+                UK Return (Sept 20-28)
+            </button>
+        </nav>
+
+        <main>
+            <div id="scotland" class="tab-content">
+                <div class="bg-white/60 p-6 rounded-xl shadow-md mb-8">
+                    <h2 class="text-2xl font-bold text-amber-800 mb-3">Loch Lomond & The Trossachs</h2>
+                    <p class="text-slate-700">Your first stop is the stunning Loch Lomond area. Staying in Balloch, you'll be on the doorstep of Scotland's largest loch, surrounded by hills and historic sites. This section offers ideas for your time around Balloch and the drive to Cairndow, perfect for soaking in the history and dramatic landscapes.</p>
+                </div>
+
+                <section class="mb-8">
+                    <h3 class="text-xl font-semibold mb-4 text-slate-700">Things to See & Do</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-white p-5 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <h4 class="font-bold text-lg">🏰 Inveraray Castle</h4>
+                            <p class="text-sm text-slate-600 mt-2">Near Cairndow, this iconic, fairytale castle is the ancestral home of the Duke of Argyll. Explore the stunning interiors and expansive gardens. A must-see piece of Scottish history.</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <h4 class="font-bold text-lg">⚖️ Inveraray Jail</h4>
+                            <p class="text-sm text-slate-600 mt-2">Step back in time at this incredibly preserved 19th-century prison and courthouse. A fascinating and interactive museum that gives a real sense of historical justice.</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <h4 class="font-bold text-lg">🚢 Loch Lomond Cruise</h4>
+                            <p class="text-sm text-slate-600 mt-2">Take a boat trip from Balloch to truly appreciate the scale and beauty of the loch and its many islands (or 'inches'). Several operators offer tours of various lengths.</p>
+                        </div>
+                         <div class="bg-white p-5 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <h4 class="font-bold text-lg">🌳 Balloch Castle & Country Park</h4>
+                            <p class="text-sm text-slate-600 mt-2">Enjoy a walk through 200 acres of beautiful parkland on the shores of the loch. The gothic-style castle (exterior viewing) provides a lovely backdrop.</p>
+                        </div>
+                         <div class="bg-white p-5 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <h4 class="font-bold text-lg">🏞️ "Rest and Be Thankful" Viewpoint</h4>
+                            <p class="text-sm text-slate-600 mt-2">The road to Cairndow (A83) passes this famous viewpoint. It's a historic spot with breathtaking views down Glen Croe, perfect for a photo stop on your drive.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h3 class="text-xl font-semibold mb-4 text-slate-700">Local Flavours</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white p-5 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <h4 class="font-bold text-lg">🍴 Loch Fyne Oyster Bar</h4>
+                            <p class="text-sm text-slate-600 mt-2">Located in Cairndow, this is a world-renowned spot for fresh, local seafood. Offers everything from oysters to salmon. A fantastic, high-quality meal in a rustic setting.</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <h4 class="font-bold text-lg">🍺 The Drovers Inn</h4>
+                            <p class="text-sm text-slate-600 mt-2">North of Loch Lomond, this is one of Scotland's most famous and historic pubs, dating back to 1705. Expect hearty food, a quirky, taxidermy-filled interior, and a lively atmosphere.</p>
+                        </div>
+                    </div>
+                </section>
+                
+                 <section class="mt-8">
+                    <h3 class="text-xl font-semibold mb-4 text-slate-700">Local Events & Festivals</h3>
+                    <div class="bg-white p-5 rounded-lg shadow-md">
+                        <p class="text-slate-600">During your mid-week visit in September, most of the larger Highland games and summer festivals have concluded. The focus here is more on the stunning natural beauty and historic sites. For local culture, a visit to a traditional pub like The Drovers Inn is a great way to experience live music and local chatter.</p>
+                    </div>
+                </section>
+            </div>
+
+            <div id="portugal" class="tab-content hidden-content">
+                <div class="bg-white/60 p-6 rounded-xl shadow-md mb-8">
+                    <h2 class="text-2xl font-bold text-amber-800 mb-3">The Algarve Coast</h2>
+                    <p class="text-slate-700">Welcome to sunny Albufeira! For this week, you can relax by the coast and also explore the rich history of the Algarve region. The area is well-connected by train, making day trips easy and enjoyable. Below are suggestions for exploring Albufeira itself and nearby towns that are just a short journey away.</p>
+                </div>
+                
+                <section class="mb-8">
+                    <h3 class="text-xl font-semibold mb-4 text-slate-700">Day Trips by Train (approx. 1 hour or less)</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-white p-5 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <h4 class="font-bold text-lg">🚆 Faro</h4>
+                            <p class="text-sm text-slate-600 mt-2">The regional capital. Explore the charming, walled Old Town (Cidade Velha), visit the cathedral for rooftop views, and see the intriguing Capela dos Ossos (Chapel of Bones).</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <h4 class="font-bold text-lg">🚆 Silves</h4>
+                            <p class="text-sm text-slate-600 mt-2">The ancient Moorish capital. Its skyline is dominated by a magnificent red sandstone castle. Wander the cobbled streets and visit the historic cathedral next to the castle walls.</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <h4 class="font-bold text-lg">🚆 Loulé</h4>
+                            <p class="text-sm text-slate-600 mt-2">A traditional market town. Its bustling neo-Arab market (best on Saturday mornings) is perfect for seeing local crafts and produce. It has a lovely historic centre and castle walls to explore.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="mb-8">
+                    <h3 class="text-xl font-semibold mb-4 text-slate-700">In & Around Albufeira</h3>
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white p-5 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <h4 class="font-bold text-lg">🏘️ Albufeira Old Town</h4>
+                            <p class="text-sm text-slate-600 mt-2">Spend time wandering the labyrinth of cobblestone streets, discovering small shops, and enjoying the atmosphere of the main square. Leads directly down to Fisherman's Beach.</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <h4 class="font-bold text-lg">🏖️ Coastal Walks</h4>
+                            <p class="text-sm text-slate-600 mt-2">Enjoy a scenic walk along the cliffs and beaches. The path from Albufeira to the nearby Praia da Oura offers fantastic views of the golden coastline.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h3 class="text-xl font-semibold mb-4 text-slate-700">Local Flavours</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-white p-5 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <h4 class="font-bold text-lg">🍴 Os Arcos Restaurante</h4>
+                            <p class="text-sm text-slate-600 mt-2">A family-run restaurant in the Old Town known for its traditional Portuguese dishes, especially fresh fish and cataplana (seafood stew).</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <h4 class="font-bold text-lg">🍴 O Catraio</h4>
+                             <p class="text-sm text-slate-600 mt-2">Simple, authentic, and popular with locals. A great choice for grilled fish served with potatoes and salad. Excellent value and quality.</p>
+                        </div>
+                         <div class="bg-white p-5 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <h4 class="font-bold text-lg">🎶 Fado Music</h4>
+                             <p class="text-sm text-slate-600 mt-2">For a cultural evening, look for restaurants in the Old Town offering Fado, the soulful, traditional music of Portugal. Many places will have a sign outside on nights they have performers.</p>
+                        </div>
+                    </div>
+                </section>
+                 <section class="mt-8">
+                    <h3 class="text-xl font-semibold mb-4 text-slate-700">Local Events & Festivals</h3>
+                    <div class="bg-white p-5 rounded-lg shadow-md">
+                        <p class="text-slate-600">September is generally a little quieter after the peak summer season. While there are no major, region-wide festivals scheduled during your stay, the Algarve's culture is always present. A visit to the Loulé market or an evening listening to Fado music are wonderful ways to experience the local atmosphere.</p>
+                    </div>
+                </section>
+            </div>
+
+            <div id="uk_return" class="tab-content hidden-content">
+                <div class="bg-white/60 p-6 rounded-xl shadow-md mb-8">
+                    <h2 class="text-2xl font-bold text-amber-800 mb-3">Return to the UK: Irvine & Lancashire</h2>
+                    <p class="text-slate-700">For the final leg of your trip, you'll travel from Glasgow down to Darwen in Lancashire. This part of the journey includes a potential stop in coastal Irvine and time spent with family, culminating in a birthday celebration before heading home from Manchester.</p>
+                </div>
+
+                 <section class="mb-8">
+                    <h3 class="text-xl font-semibold mb-4 text-slate-700">On the Way & Around Darwen</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-white p-5 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <h4 class="font-bold text-lg">⚓ Scottish Maritime Museum</h4>
+                            <p class="text-sm text-slate-600 mt-2">A great stop in Irvine. The museum is housed in a former engine shop and has a fascinating collection of vessels and maritime history.</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <h4 class="font-bold text-lg">🗼 Darwen (Jubilee) Tower</h4>
+                            <p class="text-sm text-slate-600 mt-2">For a great view over the local area, take a walk up to the Jubilee Tower on the moors above Darwen. A local landmark celebrating Queen Victoria's jubilee.</p>
+                        </div>
+                         <div class="bg-white p-5 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <h4 class="font-bold text-lg">🏰 Hoghton Tower</h4>
+                            <p class="text-sm text-slate-600 mt-2">A magnificent fortified manor house near Darwen. Offers guided tours filled with history, from James I knighting a loin of beef to its use as a filming location.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h3 class="text-xl font-semibold mb-4 text-slate-700">Local Flavours & Celebrations</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white p-5 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <h4 class="font-bold text-lg">🍲 Lancashire Hotpot</h4>
+                            <p class="text-sm text-slate-600 mt-2">While in Lancashire, be sure to try the county's signature dish. Many traditional pubs in and around Darwen will serve a classic, hearty version of this lamb and potato stew.</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <h4 class="font-bold text-lg">🎂 Harry's Birthday in Ramsbottom</h4>
+                            <p class="text-sm text-slate-600 mt-2">Ramsbottom is known for its excellent food scene. For a celebratory meal that's high quality but not overly formal, consider The Eagle & Child pub (great food and views) or Levanter for acclaimed Spanish tapas.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.tab-button');
+            const contents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const target = tab.getAttribute('data-tab');
+
+                    tabs.forEach(t => t.classList.remove('active-tab'));
+                    tab.classList.add('active-tab');
+
+                    contents.forEach(content => {
+                        if (content.id === target) {
+                            content.classList.remove('hidden-content');
+                        } else {
+                            content.classList.add('hidden-content');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
+
