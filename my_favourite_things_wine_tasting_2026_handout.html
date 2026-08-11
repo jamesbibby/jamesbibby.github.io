@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="UTF-8">
+<title>A Few of My Favourite Things — Tasting Handout</title>
+<link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Cinzel:wght@500;600&display=swap" rel="stylesheet">
+<style>
+    @page {
+        size: letter;
+        margin: 0.55in;
+    }
+    * { box-sizing: border-box; }
+    body {
+        margin: 0;
+        font-family: 'Georgia', serif;
+        color: #3c2e1c;
+        background: #e9dab9;
+        background-image:
+            repeating-linear-gradient(-6deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 90px),
+            radial-gradient(ellipse at top left, rgba(255,255,255,0.3), transparent 60%),
+            radial-gradient(ellipse at bottom right, #d7c299, transparent 65%);
+    }
+    header {
+        text-align: center;
+        padding: 0.2in 0 0.25in 0;
+        border-bottom: 2px solid #8a4a1f;
+        margin-bottom: 0.25in;
+    }
+    h1 {
+        font-family: 'Pirata One', 'Georgia', serif;
+        color: #7a1f1f;
+        font-size: 2.2rem;
+        margin: 0 0 0.1in 0;
+        letter-spacing: 1px;
+    }
+    .subtitle {
+        font-family: 'Cinzel', 'Georgia', serif;
+        font-size: 0.85rem;
+        color: #5c4a30;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin: 0;
+    }
+    .sourcing {
+        text-align: center;
+        font-size: 0.8rem;
+        color: #5c4a30;
+        font-style: italic;
+        margin: 0.15in 0 0.3in 0;
+    }
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.25in 0.4in;
+    }
+    .pour {
+        border: 1px solid #8a4a1f;
+        border-radius: 4px;
+        padding: 0.18in 0.22in;
+        background: rgba(255,255,255,0.18);
+        break-inside: avoid;
+    }
+    .pour h2 {
+        font-family: 'Cinzel', 'Georgia', serif;
+        font-size: 0.95rem;
+        color: #7a1f1f;
+        margin: 0 0 0.1in 0;
+        letter-spacing: 0.5px;
+        border-bottom: 1px solid rgba(138,74,31,0.35);
+        padding-bottom: 0.06in;
+    }
+    .row {
+        margin-bottom: 0.09in;
+        font-size: 0.78rem;
+        line-height: 1.35;
+    }
+    .row:last-child { margin-bottom: 0; }
+    .label {
+        font-family: 'Cinzel', 'Georgia', serif;
+        font-size: 0.62rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #8a4a1f;
+        display: block;
+        margin-bottom: 0.015in;
+    }
+    .name {
+        font-weight: bold;
+        color: #3c2e1c;
+    }
+    .desc {
+        color: #5c4a30;
+    }
+    footer {
+        text-align: center;
+        margin-top: 0.3in;
+        padding-top: 0.15in;
+        border-top: 1px solid rgba(138,74,31,0.35);
+        font-size: 0.75rem;
+        color: #5c4a30;
+        font-style: italic;
+    }
+</style>
+</head>
+<body>
+
+    <header>
+        <h1>A Few of My Favourite Things</h1>
+        <p class="subtitle">A 50th Birthday Wine &amp; Cheese Voyage — The Cottage</p>
+    </header>
+
+    <p class="sourcing">All six cheese pairings sourced from La Jolie Cheese Shop, our favourite local purveyor.</p>
+
+    <div class="grid">
+
+        <div class="pour">
+            <h2>Pour 1: The Sun-Drenched Sentinel</h2>
+            <div class="row">
+                <span class="label">The Bottle</span>
+                <span class="name">Bastide de la Ciselette Lou Pigna Bandol Rosé 2025 (Provence, France)</span>
+                <span class="desc"> — A fresh, fruit-forward blend (65% Mourvèdre) with a deceptively pale hue. Bone-dry, with vibrant tart red cherry and berry fruit lifted by racy acidity.</span>
+            </div>
+            <div class="row">
+                <span class="label">The Cheese</span>
+                <span class="name">Tomme de Chambrille (Poitou-Charentes, France)</span>
+                <span class="desc"> — A velvety, lactic goat's milk chèvre with bright lemon and meadow grass notes.</span>
+            </div>
+            <div class="row">
+                <span class="label">The Bite</span>
+                <span class="name">Provençal Tapenade Noire on Crostini</span>
+                <span class="desc"> — Black olive and caper spread with a dollop of Mariposa Market Sweet Red Pepper Jelly.</span>
+            </div>
+        </div>
+
+        <div class="pour">
+            <h2>Pour 2: The High-Altitude Hero</h2>
+            <div class="row">
+                <span class="label">The Bottle</span>
+                <span class="name">Chartron et Trébuchet Montagny 1er Cru 2023 (Burgundy, France)</span>
+                <span class="desc"> — A pristine Premier Cru Chardonnay, part barrel-fermented, with white flowers, honeysuckle, citrus, toasted hazelnut and brioche, finishing long and chalky.</span>
+            </div>
+            <div class="row">
+                <span class="label">The Cheese</span>
+                <span class="name">Jura Flore Comté (Jura, France)</span>
+                <span class="desc"> — An iconic alpine raw cow's milk cheese, complex, nutty, and slightly caramelized.</span>
+            </div>
+            <div class="row">
+                <span class="label">The Bite</span>
+                <span class="name">Warm Honeyed Comté Crostini</span>
+                <span class="desc"> — Toasted baguette brushed with Alpine Wildflower Honey and sea salt.</span>
+            </div>
+        </div>
+
+        <div class="pour">
+            <h2>Pour 3: The Forest Wanderer</h2>
+            <div class="row">
+                <span class="label">The Bottle</span>
+                <span class="name">Butterfield Les Boucherottes Beaune 1er Cru 2011 (Burgundy, France)</span>
+                <span class="desc"> — A beautifully mature Pinot Noir at its peak: plum, blackcurrant, and tertiary forest-floor earthiness.</span>
+            </div>
+            <div class="row">
+                <span class="label">The Cheese</span>
+                <span class="name">Grand Crème (Burgundy, France)</span>
+                <span class="desc"> — An ultra-luxurious double-cream cow's milk cheese from Fromagerie Delin, pure melted butter in texture.</span>
+            </div>
+            <div class="row">
+                <span class="label">The Bite</span>
+                <span class="name">Homemade Thyme &amp; Wild Mushroom Pâté</span>
+                <span class="desc"> — Smooth mushroom pâté with garlic and shallots on Raincoast crackers.</span>
+            </div>
+        </div>
+
+        <div class="pour">
+            <h2>Pour 4: The Local Showstopper</h2>
+            <div class="row">
+                <span class="label">The Bottle</span>
+                <span class="name">Stratus Cabernet Franc 'Decant' 2020 (Niagara, Ontario)</span>
+                <span class="desc"> — An opulent, unfiltered powerhouse bottled on its lees: dense tannins, dark cocoa, and roasted red pepper.</span>
+            </div>
+            <div class="row">
+                <span class="label">The Cheese</span>
+                <span class="name">8-Year Aged Perron Cheddar (Quebec, Canada)</span>
+                <span class="desc"> — An extra-aged, legendary Canadian cheddar, crumbly and sharp with flavor crystals.</span>
+            </div>
+            <div class="row">
+                <span class="label">The Bite</span>
+                <span class="name">Fire-Kissed Rosemary Lamb Lollipops</span>
+                <span class="desc"> — Grilled lamb chops with rosemary, brushed with Mariposa Market Red Pepper Jelly glaze.</span>
+            </div>
+        </div>
+
+        <div class="pour">
+            <h2>Pour 5: The King of Wines</h2>
+            <div class="row">
+                <span class="label">The Bottle</span>
+                <span class="name">Azelia Margheria Barolo 2013 (Piedmont, Italy)</span>
+                <span class="desc"> — A broad-shouldered, legendary Nebbiolo at its peak: cherry liqueur, tobacco leaf, tar, and iron.</span>
+            </div>
+            <div class="row">
+                <span class="label">The Cheese</span>
+                <span class="name">Testun al Barolo (Piedmont, Italy)</span>
+                <span class="desc"> — A piquant artisan cheese aged inside the pressed grape must and skins from local Barolo winemaking.</span>
+            </div>
+            <div class="row">
+                <span class="label">The Bite</span>
+                <span class="name">White Truffle &amp; Sea Salt Fingerling Potatoes</span>
+                <span class="desc"> — Crispy potatoes with White Truffle Oil from Alba and Parmigiano-Reggiano.</span>
+            </div>
+        </div>
+
+        <div class="pour">
+            <h2>Pour 6: The Golden Treasure</h2>
+            <div class="row">
+                <span class="label">The Bottle</span>
+                <span class="name">Château La Tour Blanche Sauternes 2009 (Bordeaux, France)</span>
+                <span class="desc"> — A luxurious, unctuous dessert wine from a legendary vintage, earning 95+ scores from critics: rich tropical fruit and clean acidity.</span>
+            </div>
+            <div class="row">
+                <span class="label">The Cheese</span>
+                <span class="name">Roquefort AOC (France)</span>
+                <span class="desc"> — The definitive, sharp French sheep's milk blue, the benchmark salt-and-sweet contrast.</span>
+            </div>
+            <div class="row">
+                <span class="label">The Bite</span>
+                <span class="name">Blue Cheese &amp; Walnut Phyllo Tartlets</span>
+                <span class="desc"> — Warm pastry cups with toasted walnut and crumbled Roquefort.</span>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>Fair winds and following seas — thank you for celebrating with us at The Cottage.</footer>
+
+</body>
+</html>
