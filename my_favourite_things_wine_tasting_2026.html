@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Favourite Things: A 50th Birthday Tasting</title>
+    <link href="https://cloudflare.com" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #dfba6b;
+            --dark-bg: #1c1a17;
+            --card-bg: #2a2723;
+            --text-light: #f5f3ef;
+            --text-muted: #bcaba0;
+            --wine-red: #801818;
+        }
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(28,26,23,1)), url('https://unsplash.com') center/cover;
+            border-bottom: 2px solid var(--gold);
+        }
+        h1 {
+            color: var(--gold);
+            font-size: 2.8rem;
+            margin: 0 0 1rem 0;
+            font-weight: normal;
+            letter-spacing: 2px;
+        }
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            font-style: italic;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        .course-card {
+            background-color: var(--card-bg);
+            border: 1px solid #3d3831;
+            border-radius: 8px;
+            margin-bottom: 2.5rem;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+        .card-header {
+            padding: 1.5rem;
+            background-color: #23201c;
+            border-bottom: 1px solid #3d3831;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        .card-header h2 {
+            margin: 0;
+            font-size: 1.4rem;
+            color: var(--gold);
+            font-weight: normal;
+        }
+        .reveal-btn {
+            background: none;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            padding: 0.5rem 1.2rem;
+            font-family: inherit;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        .reveal-btn:hover {
+            background-color: var(--gold);
+            color: var(--dark-bg);
+        }
+        .card-content {
+            padding: 2rem;
+            display: none;
+            border-top: 1px solid #3d3831;
+        }
+        .card-content.visible {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        .clue-section {
+            background-color: rgba(128, 24, 24, 0.15);
+            border-left: 4px solid var(--wine-red);
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 4px 4px 0;
+        }
+        .clue-title {
+            font-weight: bold;
+            color: #ff9999;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+        .section-title {
+            color: var(--gold);
+            font-size: 1.1rem;
+            margin: 1.5rem 0 0.5rem 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        p {
+            margin: 0 0 1rem 0;
+            color: #e0dcd5;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        footer {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid #3d3831;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1><i class="fa-solid fa-compass"></i> My Favourite Things</h1>
+        <div class="subtitle">A 50th Birthday Wine & Cheese Journey | The Cottage</div>
+    </header>
+
+    <div class="container">
+
+        <!-- COURSE 1 -->
+        <div class="course-card">
+            <div class="card-header" onclick="toggleReveal(1)">
+                <h2>Pour 1: The Sun-Drenched Sentinel</h2>
+                <button class="reveal-btn" id="btn-1">Reveal Treasure</button>
+            </div>
+            <div class="card-content" id="content-1">
+                <div class="clue-section">
+                    <div class="clue-title">The Secret Clue</div>
+                    A legendary estate's treasure poured from a massive double-bottle. Shimmering gemstone hues with a dry, bracingly crisp finish—like a cool breeze lifting off the Mediterranean waves.
+                </div>
+                <div class="section-title"><i class="fa-solid fa-wine-glass"></i> The Revealed Bottle</div>
+                <p><strong>Bastide de la Ciselette Lou Pigna Bandol Rosé 2025 (Provence, France)</strong></p>
+                <p>A "Grand Cru" style rosé dominated by Mourvèdre, delivering immense bone-dry structure, persistent orange peel aromas, and a gorgeous, mineral-driven salinity.</p>
+                <div class="section-title"><i class="fa-solid fa-cheese"></i> The Cheese Pairing</div>
+                <p><strong>Tomme de Chambrille (France)</strong>: A velvety, lactic French goat's milk chèvre sourced from La Jolie Cheese Shop. It brings bright, vibrant notes of fresh lemon and meadow grass.</p>
+                <div class="section-title"><i class="fa-solid fa-utensils"></i> The Custom Bite</div>
+                <p><strong>Provençal Tapenade Noire on Crostini</strong>: Rich black olive and caper spread, accented with a single tiny dollop of <em>Mariposa Market Sweet Red Pepper Jelly</em> to masterfully counter the wine's raw marine salinity.</p>
+            </div>
+        </div>
+
+        <!-- COURSE 2 -->
+        <div class="course-card">
+            <div class="card-header" onclick="toggleReveal(2)">
+                <h2>Pour 2: The High-Altitude Hero</h2>
+                <button class="reveal-btn" id="btn-2">Reveal Treasure</button>
+            </div>
+            <div class="card-content" id="content-2">
+                <div class="clue-section">
+                    <div class="clue-title">The Secret Clue</div>
+                    An elegant white from the mountains, known for its crisp energy, stone fruit focus, and soft whispers of toasted hazelnut. If Burgundy had a "Goldilocks" white, this would be it.
+                </div>
+                <div class="section-title"><i class="fa-solid fa-wine-glass"></i> The Revealed Bottle</div>
+                <p><strong>Chartron et Trébuchet Montagny 1er Cru 2023 (Burgundy, France)</strong></p>
+                <p>A pristine Premier Cru Chardonnay aged gracefully on fine lees, offering precise balance, honeysuckle aromas, and a long, chalky mineral finish.</p>
+                <div class="section-title"><i class="fa-solid fa-cheese"></i> The Cheese Pairing</div>
+                <p><strong>Jura Flore Comté (Jura, France)</strong>: An iconic alpine raw cow's milk cheese from Burgundy's mountain neighbor, boasting complex, nutty, and slightly caramelized flavors.</p>
+                <div class="section-title"><i class="fa-solid fa-utensils"></i> The Custom Bite</div>
+                <p><strong>Warm Honeyed Comté Crostini</strong>: Toasted baguette rounds brushed with rich <em>Alpine Wildflower Honey</em> and coarse sea salt, designed to draw out the wine's delicate brioche and oak tones.</p>
+            </div>
+        </div>
+
+        <!-- COURSE 3 -->
+        <div class="course-card">
+            <div class="card-header" onclick="toggleReveal(3)">
+                <h2>Pour 3: The Forest Wanderer</h2>
+                <button class="reveal-btn" id="btn-3">Reveal Treasure</button>
+            </div>
+            <div class="card-content" id="content-3">
+                <div class="clue-section">
+                    <div class="clue-title">The Secret Clue</div>
+                    A 15-year-old museum treasure crafted by a legendary Toronto native in Beaune. Expect the complex, silky perfume of wild berries intertwined with the unmistakable scent of a damp forest floor.
+                </div>
+                <div class="section-title"><i class="fa-solid fa-wine-glass"></i> The Revealed Bottle</div>
+                <p><strong>Butterfield Les Boucherottes Beaune 1er Cru 2011 (Burgundy, France)</strong></p>
+                <p>A beautifully mature Pinot Noir at its absolute peak. Time has melted away its youthful tannins, resolving into a fleshy, generous core of plum, blackcurrant, and tertiary forest-floor earthiness.</p>
+                <div class="section-title"><i class="fa-solid fa-cheese"></i> The Cheese Pairing</div>
+                <p><strong>Grand Crème (Burgundy, France)</strong>: An ultra-luxurious, decadent triple-cream cow's milk cheese crafted by Fromagerie Delin in the heart of Burgundy. Pure melted butter in texture.</p>
+                <div class="section-title"><i class="fa-solid fa-utensils"></i> The Custom Bite</div>
+                <p><strong>Homemade Thyme & Wild Mushroom Pâté</strong>: Smooth, rustic mushroom pâté seasoned with garlic and shallots, served on Raincoast crackers. The deep earthy umami seamlessly meshes with the aged soul of the wine.</p>
+            </div>
+        </div>
+        <!-- COURSE 4 -->
+        <div class="course-card">
+            <div class="card-header" onclick="toggleReveal(4)">
+                <h2>Pour 4: The Local Showstopper</h2>
+                <button class="reveal-btn" id="btn-4">Reveal Treasure</button>
+            </div>
+            <div class="card-content" id="content-4">
+                <div class="clue-section">
+                    <div class="clue-title">The Secret Clue</div>
+                    A rare, muscular monolith from right here in Ontario, presented in an avant-garde, jagged bottle designed to trap its lees. Dense, dark, and highly focused on evergreen and rosemary.
+                </div>
+                <div class="section-title"><i class="fa-solid fa-wine-glass"></i> The Revealed Bottle</div>
+                <p><strong>Stratus Cabernet Franc 'Decant' 2020 (Niagara, Ontario)</strong></p>
+                <p>An opulent, unfiltered powerhouse from a historic, hot vintage. Bottled on its lees for an unctuous, mouthcoating texture, it boasts dense tannins alongside notes of dark cocoa and roasted red pepper.</p>
+                <div class="section-title"><i class="fa-solid fa-cheese"></i> The Cheese Pairing</div>
+                <p><strong>8-Year Aged Perron Cheddar (Quebec, Canada)</strong>: An extra-aged, legendary Canadian cheddar. Crumbly, sharp, and laden with intense flavor crystals that effortlessly anchor the wine's massive 14.9% alcohol.</p>
+                <div class="section-title"><i class="fa-solid fa-utensils"></i> The Custom Bite</div>
+                <p><strong>Fire-Kissed Rosemary Lamb Lollipops</strong>: Small lamb chops marinated in heavy rosemary, flashed on the cottage grill, and brushed with a caramelized <em>Mariposa Market Red Pepper Jelly</em> glaze.</p>
+            </div>
+        </div>
+
+        <!-- COURSE 5 -->
+        <div class="course-card">
+            <div class="card-header" onclick="toggleReveal(5)">
+                <h2>Pour 5: The King of Wines</h2>
+                <button class="reveal-btn" id="btn-5">Reveal Treasure</button>
+            </div>
+            <div class="card-content" id="content-5">
+                <div class="clue-section">
+                    <div class="clue-title">The Secret Clue</div>
+                    The ultimate dry red splurge from a classic, 5-star vintage. Nicknamed "the King of wines," this traditional bottle demands a massive decant just to slowly unmask its royal face.
+                </div>
+                <div class="section-title"><i class="fa-solid fa-wine-glass"></i> The Revealed Bottle</div>
+                <p><strong>Azelia Margheria Barolo 2013 (Piedmont, Italy)</strong></p>
+                <p>A broad-shouldered, legendary Nebbiolo entering its ideal peak drinking window. It features robust, muscular structure laced with complex notes of cherry liqueur, tobacco leaf, tar, and iron.</p>
+                <div class="section-title"><i class="fa-solid fa-cheese"></i> The Cheese Pairing</div>
+                <p><strong>Testun al Barolo (Piedmont, Italy)</strong>: A piquant, holy-grail artisan cheese aged directly inside the pressed grape must and skins left over from local Barolo winemaking.</p>
+                <div class="section-title"><i class="fa-solid fa-utensils"></i> The Custom Bite</div>
+                <p><strong>White Truffle & Sea Salt Fingerling Potatoes</strong>: Crispy warm potatoes tossed in authentic, aromatic <em>White Truffle Oil brought back directly from Alba</em>, topped with freshly grated Parmigiano-Reggiano.</p>
+            </div>
+        </div>
+
+        <!-- COURSE 6 -->
+        <div class="course-card">
+            <div class="card-header" onclick="toggleReveal(6)">
+                <h2>Pour 6: The Golden Treasure</h2>
+                <button class="reveal-btn" id="btn-6">Reveal Treasure</button>
+            </div>
+            <div class="card-content" id="content-6">
+                <div class="clue-section">
+                    <div class="clue-title">The Secret Clue</div>
+                    An amber-colored nectar from my personal library cellar. A highly acclaimed vintage dripping with botrytis complexity, candied ginger, and honeyed apricot.
+                </div>
+                <div class="section-title"><i class="fa-solid fa-wine-glass"></i> The Revealed Bottle</div>
+                <p><strong>Château La Tour Blanche Sauternes 2009 (Bordeaux, France)</strong></p>
+                <p>A luxurious, unctuous, 99-point dessert masterpiece. Rich, heavily concentrated, and balancing intense tropical fruit sweetness with beautifully clean acidity.</p>
+                <div class="section-title"><i class="fa-solid fa-cheese"></i> The Cheese Pairing</div>
+                <p><strong>Roquefort AOC (France)</strong>: The definitive, sharp, and deeply pungent French sheep's milk blue cheese. The global benchmark for a perfect salt-and-sweet flavor contrast.</p>
+                <div class="section-title"><i class="fa-solid fa-utensils"></i> The Custom Bite</div>
+                <p><strong>Blue Cheese & Walnut Phyllo Tartlets</strong>: Miniature warm pastry cups filled with toasted walnut, crumbled Roquefort, and a sweet, spicy swirl of <em>Mariposa Market Red Pepper Jelly</em>.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>No wine or cheese expertise required—just a glass, an appetite, and a sense of adventure.</p>
+        <p>&copy; 2026 James Bibby. Made for a spectacular 50th at the cottage.</p>
+    </footer>
+
+    <script>
+        function toggleReveal(id) {
+            const content = document.getElementById(`content-${id}`);
+            const btn = document.getElementById(`btn-${id}`);
+            
+            if (content.classList.contains('visible')) {
+                content.classList.remove('visible');
+                btn.innerText = "Reveal Treasure";
+            } else {
+                content.classList.add('visible');
+                btn.innerText = "Hide Details";
+            }
+        }
+    </script>
+</body>
+</html>
+
